@@ -31,7 +31,8 @@ router.get('/users/:id', async (req, res) => {
 // POST a new user
 router.post('/users', async (req, res) => {
     try {
-        const newUser = await User.create(req.body);
+        const { email, username } = req.body; // Extract email and username from request body
+        const newUser = await User.create({ email, username }); // Create new user
         res.json(newUser);
     } catch (err) {
         console.log(err);
